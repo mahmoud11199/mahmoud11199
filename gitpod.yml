@@ -1,0 +1,15 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Setup Android SDK
+    init: |
+      export ANDROID_HOME=/workspace/android-sdk
+      export ANDROID_SDK_ROOT=/workspace/android-sdk
+      yes | sdkmanager --licenses
+      sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+  - name: Build APK (Debug)
+    command: |
+      export ANDROID_HOME=/workspace/android-sdk
+      export ANDROID_SDK_ROOT=/workspace/android-sdk
+      ./gradlew assembleDebug
